@@ -17,6 +17,27 @@
  */
 package de.voidnode.homebankCvsConverter
 
-fun main(args : Array<String>) {
-	Commerzbank2Homebank().convert();
+class Transaction(val postingText: String, val money: Money) {
+	
+}
+
+/**
+ * A given amount of money.
+ */
+data class Money(val raw: Long) {
+	
+	constructor(major: Long, minor: Long) : this((if(major < 0) -1 else 1) * (Math.abs(major) * 100 + minor))
+	
+	/**
+	 * The major part of the money.
+	 */
+	val major: Long
+		get() = raw / 100
+	
+	/**
+	 * The minor part of the mony (e.g. the cent part).
+	 */
+	val minor: Long
+		get() = raw % 100
+	
 }

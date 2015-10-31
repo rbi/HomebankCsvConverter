@@ -1,0 +1,4 @@
+Buchungstag;Wertstellung;Umsatzart;Buchungstext;Betrag;Währung;Auftraggeberkonto;Bankleitzahl Auftraggeberkonto;IBAN Auftraggeberkonto
+23.10.2015;23.10.2015;Lastschrift;"Test Lastschrift";-50,00;EUR;92184624;3954106;NL94ABNA0580446480
+14.10.2015;14.10.2015;Zinsen/Entgelte;"Some Zinsen";-7,95;EUR;0498516;951925;NL69ABNA0505742089
+12.10.2015;12.10.2015;Einzahlung/Auszahlung;"eingezahlt";1924,69;EUR;0929484;9209600;NL22ABNA0419551936

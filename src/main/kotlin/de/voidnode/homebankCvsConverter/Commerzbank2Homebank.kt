@@ -17,12 +17,40 @@
  */
 package de.voidnode.homebankCvsConverter
 
-/**
- * Converts a CVS file exported from the Commerzbank page into a CVS file that can be imported into the Homebank application.
- */
-class Commerzbank2Homebank {
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.charset.Charset;
 
-	fun convert() {
-		println("Hello, world!")
+
+fun main(args : Array<String>) {
+	if(args.size != 2) {
+		printHelp()
+		return
 	}
+
+	val input = Paths.get(args.get(0));
+	val output = Paths.get(args.get(0));
+
+	if(!Files.exists(input) || !Files.isDirectory(output.getParent())) {
+		printHelp()
+		return
+	}
+
+	convert(input, output)
+}
+
+/**
+* Converts a CVS file exported from the Commerzbank page into a CVS file that can be imported into the Homebank application.
+*/
+fun convert(input: Path, output: Path) {
+	val inputLines = Files.readAllLines(input, Charset.forName("UTF-8"))
+	val transactions = readCommerzbankCsv(inputLines)
+
+}
+
+private fun printHelp() {
+	println("Usage: homebankCvsConverter <input CSV> <output CSV>")
+	println("    <input CSV> The CVS file exported from the website of the bank.")
+	println("    <output CSV> The destination path where the CSV file to import into HomeBank should be stored.")
 }
