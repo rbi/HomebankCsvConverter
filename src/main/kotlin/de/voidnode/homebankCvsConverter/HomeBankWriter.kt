@@ -18,36 +18,12 @@
 package de.voidnode.homebankCvsConverter
 
 /**
-* A single financial transaction.
+* Converts [Transaction]s to CSV lines that can be imported into HomeBank.
 */
-data class Transaction(val postingText: String, val money: Money)
+fun serializeHomeBankCsv(transactions: List<Transaction>) : List<String> {
+	return transactions.map(::serializeTranscation)
+}
 
-/**
-* A given amount of money.
-*/
-data class Money(val raw: Long) {
-
-	constructor(major: Long, minor: Long) : this((if(major < 0) -1 else 1) * (Math.abs(major) * 100 + minor))
-
-	/**
-	* The major part of the money.
-	*/
-	val major: Long
-		get() = raw / 100
-
-	/**
-	* The minor part of the mony (e.g. the cent part).
-	*/
-	val minor: Long
-		get() = raw % 100
-
-
-	override fun toString(): String {
-		val absolute = absolute();
-		return "${if(raw < 0) "-" else ""}${absolute / 100},${"%02d".format(absolute % 100)}"
-	}
-
-	private fun absolute(): Long {
-		return if(raw < 0) raw * -1 else raw
-	}
+private fun serializeTranscation(transaction: Transaction) : String {
+	return ";0;;;${transaction.postingText};${transaction.money};;"
 }

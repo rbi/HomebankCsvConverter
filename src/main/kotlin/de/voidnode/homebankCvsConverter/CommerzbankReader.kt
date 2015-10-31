@@ -25,7 +25,7 @@ private val commerzbankCsvLine = Regex("([^;]*);([^;]*);([^;]*);\"([^;]*)\";(-?)
 /**
 * Converts CSV files exported from the website of the commerzbank to [Transaction]s.
 */
-public fun readCommerzbankCsv(lines: List<String>) : List<Transaction> {
+fun readCommerzbankCsv(lines: List<String>) : List<Transaction> {
 	// skip the first entry as it is the csv header
 	return lines.drop(1).map(::convertCommerzbankCsvLine)
 }

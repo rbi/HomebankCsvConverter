@@ -43,10 +43,12 @@ fun main(args : Array<String>) {
 /**
 * Converts a CVS file exported from the Commerzbank page into a CVS file that can be imported into the Homebank application.
 */
-fun convert(input: Path, output: Path) {
-	val inputLines = Files.readAllLines(input, Charset.forName("UTF-8"))
+private fun convert(input: Path, output: Path) {
+	val utf8 = Charset.forName("UTF-8");
+	val inputLines = Files.readAllLines(input, utf8)
 	val transactions = readCommerzbankCsv(inputLines)
-
+	val outputLines = serializeHomeBankCsv(transactions)
+	Files.write(output, outputLines, utf8)
 }
 
 private fun printHelp() {

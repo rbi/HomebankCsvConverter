@@ -17,37 +17,19 @@
  */
 package de.voidnode.homebankCvsConverter
 
-/**
-* A single financial transaction.
-*/
-data class Transaction(val postingText: String, val money: Money)
+import org.jetbrains.spek.api.Spek
+import kotlin.test.*
 
-/**
-* A given amount of money.
-*/
-data class Money(val raw: Long) {
-
-	constructor(major: Long, minor: Long) : this((if(major < 0) -1 else 1) * (Math.abs(major) * 100 + minor))
-
-	/**
-	* The major part of the money.
-	*/
-	val major: Long
-		get() = raw / 100
-
-	/**
-	* The minor part of the mony (e.g. the cent part).
-	*/
-	val minor: Long
-		get() = raw % 100
-
-
-	override fun toString(): String {
-		val absolute = absolute();
-		return "${if(raw < 0) "-" else ""}${absolute / 100},${"%02d".format(absolute % 100)}"
+class DomainTest: Spek() { init {
+	given("Variouse money instances") {
+		val money = listOf(Money(58, 92), Money(-60), Money(0, 0))
+				
+		on("calling toString()") {
+			val serialized = money.map { it.toString() }
+					
+			it("should be converted correctly") {
+				assertEquals(listOf("58,92", "-0,60", "0,00"), serialized)
+			}
+		}
 	}
-
-	private fun absolute(): Long {
-		return if(raw < 0) raw * -1 else raw
-	}
-}
+}}
