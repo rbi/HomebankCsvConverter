@@ -23,11 +23,14 @@ import java.nio.file.Files;
 import java.nio.charset.Charset
 import org.jetbrains.spek.api.Spek
 import kotlin.test.*
+import java.time.LocalDate
 
 class HomeBankWriter: Spek() { init {
 	given("A list of transactions") {
-		val transactions = listOf(Transaction("Einzahlung", Money(43,59)),
-				Transaction("Internet DSL", Money(-45,0)), Transaction("Something",Money(0,-53)))
+		val transactions = listOf(
+				Transaction(LocalDate.of(2015, 4, 9), "Einzahlung", Money(43,59), PaymentType.TRANSFER),
+				Transaction(LocalDate.of(1998, 6, 9), "Internet DSL", Money(-45,0), PaymentType.INTEREST_OR_FEE),
+				Transaction(LocalDate.of(2010, 11, 30), "Something",Money(0,-53)))
 				
 		on("passing the transactions to the HomeBankWriter") {
 			val csvLines = serializeHomeBankCsv(transactions)

@@ -17,10 +17,16 @@
  */
 package de.voidnode.homebankCvsConverter
 
+import java.time.LocalDate
+
+enum class PaymentType {
+	TRANSFER, INTEREST_OR_FEE, DEPOSIT_OR_WITHDRAWAL
+}
+
 /**
 * A single financial transaction.
 */
-data class Transaction(val postingText: String, val money: Money)
+data class Transaction(val date: LocalDate, val postingText: String, val money: Money, val paymentType: PaymentType? = null)
 
 /**
 * A given amount of money.

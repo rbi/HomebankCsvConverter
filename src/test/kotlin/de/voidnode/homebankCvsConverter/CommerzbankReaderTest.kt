@@ -22,6 +22,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import org.jetbrains.spek.api.Spek
 import kotlin.test.*
+import java.time.LocalDate
 
 class CommerzbankReaderTest: Spek() { init {
 	given("A CSV export of transaction from the Commerzbank website") {
@@ -34,6 +35,12 @@ class CommerzbankReaderTest: Spek() { init {
 				assertEquals(3, transactions.size)	
 			}
 			
+			it("should read the date correctly") {
+				assertEquals(LocalDate.of(2015, 10, 23), transactions[0].date)
+				assertEquals(LocalDate.of(2015, 10, 14), transactions[1].date)
+				assertEquals(LocalDate.of(2015, 10, 12), transactions[2].date)
+			}
+			
 			it("should read the posting text correctly") {
 				assertEquals("Test Lastschrift", transactions[0].postingText)
 				assertEquals("Some Zinsen", transactions[1].postingText)
@@ -44,6 +51,12 @@ class CommerzbankReaderTest: Spek() { init {
 				assertEquals(Money(-5000), transactions[0].money)
 				assertEquals(Money(-795), transactions[1].money)
 				assertEquals(Money(192469), transactions[2].money)
+			}
+					
+			it("should read the payment method correctly") {
+				assertEquals(PaymentType.TRANSFER, transactions[0].paymentType)
+				assertEquals(PaymentType.INTEREST_OR_FEE, transactions[1].paymentType)
+				assertEquals(PaymentType.DEPOSIT_OR_WITHDRAWAL, transactions[2].paymentType)
 			}
 		}
 	}

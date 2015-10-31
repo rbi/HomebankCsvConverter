@@ -30,7 +30,7 @@ fun main(args : Array<String>) {
 	}
 
 	val input = Paths.get(args.get(0));
-	val output = Paths.get(args.get(0));
+	val output = Paths.get(args.get(1));
 
 	if(!Files.exists(input) || !Files.isDirectory(output.getParent())) {
 		printHelp()
