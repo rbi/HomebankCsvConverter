@@ -28,7 +28,10 @@ dependencies {
   testCompile 'org.jetbrains.spek:spek:0.1.180'
 }
 
-version = versioning.info.full
+versioning {
+   releaseMode = 'snapshot'
+}
+version = versioning.info.display
 
 license {
   header = rootProject.file('src/build/LICENSE_HEADER')
