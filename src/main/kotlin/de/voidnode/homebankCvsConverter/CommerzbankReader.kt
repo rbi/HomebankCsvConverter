@@ -35,7 +35,7 @@ private fun convertCommerzbankCsvLine(line: String) : Transaction {
 	val matcher = commerzbankCsvLine.matchEntire(line)
 	if(matcher != null) {
 		val date = readDate(matcher.groups)
-		var paymentType = matcher.groups[5]?.value?.let { readPaymentType(it) }
+		val paymentType = matcher.groups[5]?.value?.let { readPaymentType(it) }
 		val postingText = matcher.groups[6]
 		val money = readMoney(matcher.groups)
 		if(date != null && postingText != null && money != null) {
@@ -61,6 +61,9 @@ private fun readPaymentType(rawType: String) : PaymentType? {
 		"Überweisung" -> PaymentType.TRANSFER
 		"Zinsen/Entgelte" -> PaymentType.INTEREST_OR_FEE
 		"Einzahlung/Auszahlung" -> PaymentType.DEPOSIT_OR_WITHDRAWAL
+		"Lastschrift" -> PaymentType.DIRECT_WITHDRAWL
+		"Gutschrift" -> PaymentType.CREDIT_NOTE
+		"Dauerauftrag" -> PaymentType.STANDING_ORDER
 		else -> null 
 	}
 }

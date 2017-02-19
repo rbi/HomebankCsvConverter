@@ -17,7 +17,7 @@
  */
 package de.voidnode.homebankCvsConverter
 
-import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter
 
 /**
 * Converts [Transaction]s to CSV lines that can be imported into HomeBank.
@@ -34,9 +34,12 @@ private fun serializeTranscation(transaction: Transaction) : String {
 
 private fun serializePaymentType(paymentType: PaymentType?) : String {
 	return when(paymentType) {
-		PaymentType.TRANSFER -> "4" 
+		PaymentType.CREDIT_NOTE -> "4"
+		PaymentType.TRANSFER -> "4"
+		PaymentType.STANDING_ORDER -> "7"
 		PaymentType.DEPOSIT_OR_WITHDRAWAL -> "9"
 		PaymentType.INTEREST_OR_FEE -> "10"
+		PaymentType.DIRECT_WITHDRAWL -> "11"
 		else -> "0"
 	}
 }

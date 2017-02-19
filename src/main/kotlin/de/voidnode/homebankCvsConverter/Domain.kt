@@ -20,7 +20,7 @@ package de.voidnode.homebankCvsConverter
 import java.time.LocalDate
 
 enum class PaymentType {
-	TRANSFER, INTEREST_OR_FEE, DEPOSIT_OR_WITHDRAWAL
+	TRANSFER, INTEREST_OR_FEE, DEPOSIT_OR_WITHDRAWAL, DIRECT_WITHDRAWL, CREDIT_NOTE, STANDING_ORDER
 }
 
 /**
@@ -49,7 +49,7 @@ data class Money(val raw: Long) {
 
 
 	override fun toString(): String {
-		val absolute = absolute();
+		val absolute = absolute()
 		return "${if(raw < 0) "-" else ""}${absolute / 100},${"%02d".format(absolute % 100)}"
 	}
 
