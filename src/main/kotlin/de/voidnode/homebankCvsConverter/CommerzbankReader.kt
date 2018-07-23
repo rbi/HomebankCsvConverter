@@ -21,7 +21,7 @@ import kotlin.text.Regex
 import kotlin.text.MatchGroupCollection
 import java.time.LocalDate
 
-private val commerzbankCsvLine = Regex("([^;]*);([0-9]+)\\.([0-9]+)\\.([0-9]+);([^;]*);\"([^;]*)\";(-?)([0-9]+),([0-9]+);([A-Z]*);([0-9]*);([0-9]*);([A-Za-z0-9]*)")
+private val commerzbankCsvLine = Regex("([^;]*);([0-9]+)\\.([0-9]+)\\.([0-9]+);([^;]*);\"([^;]*)\";(-?)([0-9]+),([0-9]+);([A-Z]*);([0-9]*);([0-9]*);([A-Za-z0-9]*)(;([^;]*))?")
 
 /**
 * Converts CSV files exported from the website of the commerzbank to [Transaction]s.

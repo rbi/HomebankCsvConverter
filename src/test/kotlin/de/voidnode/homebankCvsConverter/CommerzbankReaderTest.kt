@@ -17,9 +17,6 @@
  */
 package de.voidnode.homebankCvsConverter
 
-import java.nio.charset.Charset
-import java.nio.file.Files
-import java.nio.file.Paths
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.*
 import kotlin.test.*
