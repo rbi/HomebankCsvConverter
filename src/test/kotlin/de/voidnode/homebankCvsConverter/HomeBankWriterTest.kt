@@ -17,15 +17,15 @@
  */
 package de.voidnode.homebankCvsConverter
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.nio.charset.Charset
 import org.jetbrains.spek.api.Spek
+import org.jetbrains.spek.api.dsl.*
 import kotlin.test.*
 import java.time.LocalDate
 
-class HomeBankWriter: Spek() { init {
+object HomeBankWriter: Spek( {
 	given("A list of transactions") {
 		val transactions = listOf(
 				Transaction(LocalDate.of(2015, 4, 9), "Einzahlung", Money(43,59), PaymentType.TRANSFER),
@@ -45,4 +45,4 @@ class HomeBankWriter: Spek() { init {
 			}
 		}
 	}
-}}
+})

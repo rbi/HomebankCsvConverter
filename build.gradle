@@ -3,7 +3,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.6'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.51"
   }
 }
 plugins {
@@ -23,9 +23,27 @@ repositories {
 
 targetCompatibility = '1.8'
 
+// setup dependencies
 dependencies {
-  compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.6'
-  testCompile 'org.jetbrains.spek:spek:0.1.180'
+  compile 'org.jetbrains.kotlin:kotlin-stdlib:1.2.51'
+
+  testCompile "org.junit.jupiter:junit-jupiter-api:5.2.0"
+  testCompile "org.jetbrains.kotlin:kotlin-test:1.2.51"
+  // for spek
+  testCompile "org.jetbrains.kotlin:kotlin-reflect:1.2.51"
+  testCompile ("org.jetbrains.spek:spek-api:1.1.5") {
+    exclude group: "org.jetbrains.kotlin"
+  }
+
+  testRuntime("org.junit.jupiter:junit-jupiter-engine:5.2.0")
+  testRuntime ("org.jetbrains.spek:spek-junit-platform-engine:1.1.5") {
+    exclude group: "org.junit.platform"
+    exclude group: "org.jetbrains.kotlin"
+  }
+}
+
+test {
+  useJUnitPlatform()
 }
 
 versioning {

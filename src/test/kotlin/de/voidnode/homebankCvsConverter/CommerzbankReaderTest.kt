@@ -21,15 +21,16 @@ import java.nio.charset.Charset
 import java.nio.file.Files
 import java.nio.file.Paths
 import org.jetbrains.spek.api.Spek
+import org.jetbrains.spek.api.dsl.*
 import kotlin.test.*
 import java.time.LocalDate
 
-class CommerzbankReaderTest: Spek() { init {
+object CommerzbankReaderTest: Spek({
 	given("A CSV export of transaction from the Commerzbank website") {
 		val testData = CommerzbankReaderTest::javaClass.javaClass.getResourceAsStream("/commerzbank-export-testdata.csv")
 
 		on("passing the CSV to the CommerzbankReader") {
-			val transactions = readCommerzbankCsv(testData.reader().useLines { it.toArrayList() })
+			val transactions = readCommerzbankCsv(testData.reader().readLines())
 			
 			it("should read all transactions from it") {
 				assertEquals(3, transactions.size)	
@@ -60,4 +61,4 @@ class CommerzbankReaderTest: Spek() { init {
 			}
 		}
 	}
-}}
+})

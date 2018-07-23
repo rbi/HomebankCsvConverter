@@ -18,9 +18,10 @@
 package de.voidnode.homebankCvsConverter
 
 import org.jetbrains.spek.api.Spek
+import org.jetbrains.spek.api.dsl.*
 import kotlin.test.*
 
-class DomainTest: Spek() { init {
+object DomainTest: Spek({
 	given("Variouse money instances") {
 		val money = listOf(Money(58, 92), Money(-60), Money(0, 0))
 				
@@ -32,4 +33,4 @@ class DomainTest: Spek() { init {
 			}
 		}
 	}
-}}
+})
