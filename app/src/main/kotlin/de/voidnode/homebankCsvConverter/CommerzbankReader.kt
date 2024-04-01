@@ -21,7 +21,7 @@ import kotlin.text.Regex
 import kotlin.text.MatchGroupCollection
 import java.time.LocalDate
 
-private val commerzbankCsvLine = Regex("([^;]*);([0-9]+)\\.([0-9]+)\\.([0-9]+);([^;]*);\"([^;]*)\";(-?)([0-9]+),([0-9]+);([A-Z]*);([0-9]*);([0-9]*);([A-Za-z0-9]*)(;([^;]*))?")
+private val commerzbankCsvLine = Regex("([^;]*);([0-9]+)\\.([0-9]+)\\.([0-9]+);([^;]*);\"?([^;\"]*)\"?;(-?)([0-9]+)(,([0-9]+))?;([A-Z]*);([A-Za-z0-9]*)(;([^;]*))?")
 
 /**
 * Converts CSV files exported from the website of the commerzbank to [Transaction]s.
@@ -48,10 +48,14 @@ private fun convertCommerzbankCsvLine(line: String) : Transaction {
 private fun readMoney(groups: MatchGroupCollection) : Money? {
 	val invert = if(groups[7]?.value == "-") -1 else 1
 	val major = groups[8]
-	val minor = groups[9]
+	val minorGroup = groups[10]
+	var minor = 0L;
+	if (minorGroup != null) {
+		minor = minorGroup.value.toLong()
+	}
 
-	if(major != null && minor != null) {
-		return Money( invert * major.value.toLong(), minor.value.toLong())
+	if(major != null) {
+		return Money( invert * major.value.toLong(), minor)
 	}
 	return null
 }
@@ -69,11 +73,17 @@ private fun readPaymentType(rawType: String) : PaymentType? {
 }
 
 private fun readDate(groups: MatchGroupCollection) : LocalDate? {
-	val day = groups[2]?.value?.toInt()
-	val month =  groups[3]?.value?.toInt()
+	var day = groups[2]?.value?.toInt()
+	var month = groups[3]?.value?.toInt()
 	val year = groups[4]?.value?.toInt()
 	
 	if(year != null && month != null && day != null) {
+		// seen in actual CSV
+		if(month == 2 && day == 30) {
+			day = 1
+			month = 3
+		}
+
 		return LocalDate.of(year, month, day)
 	}
 	return null

@@ -1,4 +1,5 @@
-Buchungstag;Wertstellung;Umsatzart;Buchungstext;Betrag;Währung;Auftraggeberkonto;Bankleitzahl Auftraggeberkonto;IBAN Auftraggeberkonto;Kategorie
-23.10.2015;23.10.2015;Überweisung;"Test Lastschrift";-50,00;EUR;92184624;3954106;NL94ABNA0580446480;Some Category
-13.10.2015;14.10.2015;Zinsen/Entgelte;"Some Zinsen";-7,95;EUR;0498516;951925;NL69ABNA0505742089;Other Category
-12.10.2015;12.10.2015;Einzahlung/Auszahlung;"eingezahlt";1924,69;EUR;0929484;9209600;NL22ABNA0419551936
+Buchungstag;Wertstellung;Umsatzart;Buchungstext;Betrag;Währung;IBAN Kontoinhaber;Kategorie
+23.10.2015;23.10.2015;Überweisung;"Test Lastschrift";-50,00;EUR;NL94ABNA0580446480;Some Category
+13.10.2015;14.10.2015;Zinsen/Entgelte;"Some Zinsen";-7,95;EUR;NL69ABNA0505742089;Other Category
+12.10.2015;12.10.2015;Einzahlung/Auszahlung;"eingezahlt";1924,69;EUR;NL22ABNA0419551936
+28.03.2024;30.02.2024;Zinsen/Entgelte;xxx;0;EUR;DE52500105176419294747;
