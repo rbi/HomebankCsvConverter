@@ -5,7 +5,7 @@ HomebankCsvConverter is a small tool to convert CSV files with transactions expo
 HomebankCsvConverter needs [Java](https://www.java.com/de/download/) with Version 8 or higher to be installed on the computer. The tool is a command line only application that can be downloaded at the releases tab. It needs to be called with the following arguments.
 
 
-    homebankCvsConverter <input CSV> <output CSV>
+    homebankCsvConverter <input CSV> <output CSV>
         <input CSV> The CVS file exported from the website of the bank.
         <output CSV> The destination path where the CSV file to import into HomeBank should be stored.
 

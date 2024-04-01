@@ -1,21 +1,21 @@
 /*
- * This file is part of HomebankCvsConverter.
- * Copyright (C) 2015 Raik Bieniek <raik@voidnode.de>
+ * This file is part of HomebankCsvConverter.
+ * Copyright (C) 2024 Raik Bieniek <raik@bieniek-it.de>
  *
- * HomebankCvsConverter is free software: you can redistribute it and/or modify
+ * HomebankCsvConverter is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * HomebankCvsConverter is distributed in the hope that it will be useful,
+ * homebankCsvConverter is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with HomebankCvsConverter.  If not, see <http://www.gnu.org/licenses/>.
+ * along with homebankCsvConverter.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.voidnode.homebankCvsConverter
+package de.voidnode.homebankCsvConverter
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -52,7 +52,7 @@ private fun convert(input: Path, output: Path) {
 }
 
 private fun printHelp() {
-	println("Usage: homebankCvsConverter <input CSV> <output CSV>")
+	println("Usage: homebankCsvConverter <input CSV> <output CSV>")
 	println("    <input CSV> The CVS file exported from the website of the bank.")
 	println("    <output CSV> The destination path where the CSV file to import into HomeBank should be stored.")
 }
